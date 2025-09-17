@@ -1,18 +1,16 @@
-# Welcome to React Router!
+# Task
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Build a notepad website storing data in the frontend. Use TypeScript, react-router, react-hook-form and react-query.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+# Implementation criteria
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+[] The application should allow for seeing existing notes and adding/removing notes.
+[] The homepage in the notepad must list each note with a title, text and created timestamp (createdAt).
+[] The notepad must have a home page ("/") with a list of notes.
+[] The notepad must have a page for adding a new note ("/add").
+[] When clicking on a note in the homepage, a modal opens showing the note contents, title and createdAt. It should also have a delete button.
+[] The "/add" page should use react-hook-form to validate that the title and description are not empty after trimming.
+[] Data should be stored in a local cache, which you update using a useAddNote mutation, and which you query using a useListNotes query.
 
 ## Getting Started
 
@@ -41,28 +39,6 @@ Create a production build:
 ```bash
 npm run build
 ```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
 
 ### DIY Deployment
 
