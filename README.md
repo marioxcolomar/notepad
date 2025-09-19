@@ -4,13 +4,13 @@ Build a notepad website storing data in the frontend. Use TypeScript, react-rout
 
 # Implementation criteria
 
-[] The application should allow for seeing existing notes and adding/removing notes.
-[] The homepage in the notepad must list each note with a title, text and created timestamp (createdAt).
-[] The notepad must have a home page ("/") with a list of notes.
-[] The notepad must have a page for adding a new note ("/add").
-[] When clicking on a note in the homepage, a modal opens showing the note contents, title and createdAt. It should also have a delete button.
-[] The "/add" page should use react-hook-form to validate that the title and description are not empty after trimming.
-[] Data should be stored in a local cache, which you update using a useAddNote mutation, and which you query using a useListNotes query.
+[x] The application should allow for seeing existing notes and adding/removing notes.
+[x] The homepage in the notepad must list each note with a title, text and created timestamp.
+[x] The notepad must have a home page ("/") with a list of notes.
+[x] The notepad must have a page for adding a new note ("/add").
+[x] When clicking on a note in the homepage, a modal opens showing the note contents, title and createdAt. It should also have a delete button.
+[x] The "/add" page should use react-hook-form to validate that the title and description are not empty after trimming.
+[x] Data should be stored in a local cache, which you update using a useAddNote mutation, and which you query using a useListNotes query.
 
 ## Getting Started
 
