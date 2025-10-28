@@ -4,6 +4,7 @@ import type { Note } from "../types/note";
 import { Alert, Button } from "@mui/material";
 import { NavigateButton } from "~/components/NavigateButton";
 import { useNavigate } from "react-router";
+import type { KeyboardEvent } from "react";
 
 export function AddNote() {
   const createNoteMutation = useAddNote();
@@ -19,47 +20,52 @@ export function AddNote() {
     navigate("/");
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>): void => {
+    if (event.key === 'Enter') {
+      handleSubmit(handleAddNote)()
+    }
+  }
+
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center min-h-0 min-w-1">
-        <form
-          onSubmit={handleSubmit(handleAddNote)}
-          className="flex flex-col gap-4"
+    <main className="flex justify-center pt-16">
+      <form
+        onSubmit={handleSubmit(handleAddNote)}
+        className="flex flex-col gap-4 w-[80%]"
+      >
+        <h4>Add note:</h4>
+        <input
+          placeholder="Title"
+          {...register("title", {
+            validate: (value) =>
+              value.trim().length > 0 || "Title is required",
+          })}
+        />
+        {errors.title && (
+          <Alert severity="warning">{errors.title.message}</Alert>
+        )}
+        <textarea
+          onKeyDown={handleKeyDown}
+          rows={5}
+          cols={3}
+          placeholder="Description"
+          {...register("description", {
+            validate: (value) =>
+              value.trim().length > 0 || "Description is required",
+          })}
+        />
+        {errors.description && (
+          <Alert severity="warning">{errors.description.message}</Alert>
+        )}
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={createNoteMutation.isPending}
         >
-          <h4>Add note:</h4>
-          <input
-            placeholder="Title"
-            {...register("title", {
-              validate: (value) =>
-                value.trim().length > 0 || "Title is required",
-            })}
-          />
-          {errors.title && (
-            <Alert severity="warning">{errors.title.message}</Alert>
-          )}
-          <textarea
-            rows={5}
-            cols={3}
-            placeholder="Description"
-            {...register("description", {
-              validate: (value) =>
-                value.trim().length > 0 || "Description is required",
-            })}
-          />
-          {errors.description && (
-            <Alert severity="warning">{errors.description.message}</Alert>
-          )}
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={createNoteMutation.isPending}
-          >
-            Submit Note
-          </Button>
-          <NavigateButton path="/" text="Cancel" color="warning" />
-        </form>
-      </div>
+          Submit Note
+        </Button>
+        <NavigateButton path="/" text="Cancel" color="warning" />
+      </form>
     </main>
   );
 }
